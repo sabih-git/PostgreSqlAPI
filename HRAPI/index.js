@@ -51,6 +51,15 @@ app.get('/job',async(req,res)=>{
     }
 });
 
+app.get('/jobhistory',async(req,res)=>{
+    try{
+        const result = await pool.query('select * from job_history');
+        res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message})
+    }
+});
+
 app.get('/department',async(req,res)=>{
     try{
         const result = await pool.query('select * from departments');
